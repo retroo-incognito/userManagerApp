@@ -60,6 +60,11 @@ export class UserService {
     this.users.update(list => [...list, userWithId]);
   }
 
+  updateUser(userId: number, updatedUser: user) {
+    this.users.update(list =>
+      list.map(user => (user.id === userId ? { ...user, ...updatedUser } : user))
+    );
+  }
   deleteUser(userId: any) {
     this.users.update(list => list.filter(user => user.id !== userId));
   }
