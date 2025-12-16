@@ -4,13 +4,7 @@ import { UserListComponent } from './../user-list/user-list';
 
 @Component({
   selector: 'app-root',
-  imports: [UserAddComponent, UserListComponent],
-  template: `
-    <div>
-      <h1>User Management</h1>
-      <app-user-add />
-      <app-user-list />
-    </div>
-  `,
+  imports: [],
+  template: './user.dashboard.html',
 })
 export class AppComponent { }
