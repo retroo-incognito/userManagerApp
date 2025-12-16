@@ -1,0 +1,48 @@
+<div class="card">
+  <h2>Contact List</h2>
+
+  @if (users().length > 0) {
+  <div class="table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Avatar</th>
+          <th>Username</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Company</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users(); track user.id) {
+        <tr>
+          <td>
+            <div class="table-avatar" [style.background]="getAvatarColor(user.id)">
+              {{ getInitials(user.fullName) }}
+            </div>
+          </td>
+          <td class="username-col">{{ user.username }}</td>
+          <td class="name-col">{{ user.fullName }}</td>
+          <td class="email-col">{{ user.email }}</td>
+          <td class="phone-col">{{ user.phone || '-' }}</td>
+          <td class="company-col">{{ user.company || '-' }}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="btn-icon btn-edit" title="Edit">✏️</button>
+              <button class="btn-icon btn-delete" (click)="deleteUser(user.id)" title="Delete">🗑️</button>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  } @else {
+  <div class="empty-state">
+    <div class="empty-state-icon">📇</div>
+    <p>No contacts yet. Add your first contact above!</p>
+  </div>
+  }
+</div>
