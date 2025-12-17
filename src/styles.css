@@ -593,6 +593,7 @@ button:not(.btn-danger):not(.btn-success):not(.btn-secondary):not(.btn-icon):act
     filter: brightness(1.2);
 }
 
+
 .btn-delete:hover {
     background: var(--danger);
     border-color: var(--danger);

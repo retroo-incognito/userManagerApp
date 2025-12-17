@@ -35,7 +35,7 @@ export class UserService {
   private loadUsersFromStorage(): any[] {
     try {
       const storedUsers = localStorage.getItem(this.STORAGE_KEY);
-      console.log('Loaded users:', storedUsers); // Debug
+      console.log('Loaded users:', storedUsers); // for debugging
       return storedUsers ? JSON.parse(storedUsers) : [];
     } catch (error) {
       console.error('Error loading users from localStorage:', error);
