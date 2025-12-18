@@ -730,3 +730,179 @@ button:not(.btn-danger):not(.btn-success):not(.btn-secondary):not(.btn-icon):act
         transform: translateY(0);
     }
 }
+
+/* ============================================
+   LOGIN & REGISTER FORMS - Purple Theme
+   ============================================ */
+
+/* === FORM CONTAINER === */
+form {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #E5E7EB;
+}
+
+@media (min-width: 768px) {
+    form {
+        padding: 1.5rem;
+    }
+}
+
+/* === HEADINGS === */
+h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #8B5CF6;
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* === FORM INPUTS === */
+form input {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    margin-bottom: 0.75rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    font-family: inherit;
+    color: #1F2937;
+    background: white;
+    transition: all 0.2s ease;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #8B5CF6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+form input::placeholder {
+    color: #6B7280;
+    opacity: 0.7;
+}
+
+form input:hover:not(:focus) {
+    border-color: #D1D5DB;
+}
+
+/* Invalid state */
+form input.ng-invalid.ng-touched {
+    border-color: #F43F5E;
+}
+
+form input.ng-invalid.ng-touched:focus {
+    box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.1);
+}
+
+/* Valid state */
+form input.ng-valid.ng-touched {
+    border-color: #10B981;
+}
+
+@media (min-width: 768px) {
+    form input {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* === FORM BUTTON === */
+form button {
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background: #8B5CF6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
+    margin-top: 0.25rem;
+}
+
+form button:hover:not(:disabled) {
+    background: #7C3AED;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+form button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+form button:disabled {
+    background: #D1D5DB;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
+}
+
+@media (min-width: 768px) {
+    form button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+/* === OPTIONAL: FORM GROUP WRAPPER === */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: #1F2937;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* === OPTIONAL: ERROR MESSAGES === */
+.error-message {
+    color: #F43F5E;
+    font-size: 0.8125rem;
+    margin-top: -0.75rem;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+/* === OPTIONAL: DIVIDER BETWEEN FORMS === */
+.auth-divider {
+    height: 1px;
+    background: #E5E7EB;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.auth-divider::after {
+    content: 'OR';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 0 1rem;
+    color: #6B7280;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* === RESPONSIVE CONTAINER === */
+@media (max-width: 767px) {
+    form {
+        border-radius: 8px;
+        padding: 1.25rem;
+    }
+}
