@@ -24,9 +24,19 @@ export class AuthService {
 
   isLoggedIn = computed(() => this.token() !== null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.loadTokenFromStorage();
+  }
 
-
+  private loadTokenFromStorage(): void {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      this.token.set(storedToken);
+      // Optional: fetch user data if needed, but since you only store token,
+      // you might want to validate it with a backend call later.
+      // For now, we assume token presence = logged in
+    }
+  }
   login(email: string, password: string) {
     return this.http
       .post<LoginResponse>(`${this.apiUrl}/login`, { email, password })

@@ -1,36 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router'; // ← Add ActivatedRoute
+import { toObservable } from '@angular/core/rxjs-interop'; // For signal to observable if needed
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
   form: FormGroup;
+  loading = false; // ← For submit button disable + spinner
 
-  constructor(
-    private fb: FormBuilder,
-    private auth: AuthService,
-    private router: Router
-  ) {
+  // Inject services (modern way with inject() is fine too)
+  private fb = inject(FormBuilder);
+  private auth = inject(AuthService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute); // ← To read returnUrl
+
+  constructor() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required]]
     });
   }
+  
 
   submit() {
-    if (this.form.invalid) return;
+    if (this.form.invalid || this.loading) return;
+
+    this.loading = true;
 
     const { email, password } = this.form.value;
 
     this.auth.login(email!, password!).subscribe({
-      next: () => this.router.navigate(['/']),
-      error: err => alert(err.error.message)
+      next: () => {
+        // Redirect to returnUrl if provided by the guard, otherwise go to dashboard
+        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.router.navigateByUrl(returnUrl);
+      },
+      error: (err) => {
+        this.loading = false;
+        alert(err.error?.message || 'Login failed. Please try again.');
+      },
+      complete: () => {
+        this.loading = false;
+      }
     });
   }
 }
