@@ -1,12 +1,38 @@
-<h2>Register</h2>
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <h2>Create Account</h2>
 
-<form [formGroup]="form" (ngSubmit)="submit()">
-    <input placeholder="Email" formControlName="email">
-    <input type="password" placeholder="Password" formControlName="password">
-    <button type="submit">Register</button>
+  <div class="form-group">
+    <label>Email</label>
+    <input
+      type="email"
+      formControlName="email"
+      placeholder="Enter email"
+    />
 
-    <p>
-    already have an account? 
+    @if (form.get('email')?.touched && form.get('email')?.invalid) {
+      <small>Valid email is required</small>
+    }
+  </div>
+
+  <div class="form-group">
+    <label>Password</label>
+    <input
+      type="password"
+      formControlName="password"
+      placeholder="Enter password"
+    />
+
+    @if (form.get('password')?.touched && form.get('password')?.invalid) {
+      <small>Minimum 6 characters required</small>
+    }
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">
+    Register
+  </button>
+
+  <p>
+    Already have an account?
     <a routerLink="/login">Login</a>
   </p>
 </form>

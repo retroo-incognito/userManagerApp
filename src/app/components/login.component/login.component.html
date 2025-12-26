@@ -5,39 +5,28 @@
     <!-- Email Field -->
     <div class="form-group">
       <label for="email">Email</label>
-      <input
-        id="email"
-        type="email"
-        formControlName="email"
-        placeholder="your@email.com"
-      />
+      <input id="email" type="email" formControlName="email" placeholder="your@email.com" />
 
       @if (form.get('email')?.invalid && form.get('email')?.touched) {
-        <div class="error">
-          @if (form.get('email')?.errors?.['required']) {
-            <small>Email is required</small>
-          }
-          @if (form.get('email')?.errors?.['email']) {
-            <small>Invalid email format</small>
-          }
-        </div>
+      <div class="error">
+        @if (form.get('email')?.errors?.['required']) {
+        <small>Email is required</small>
+        } @if (form.get('email')?.errors?.['email']) {
+        <small>Invalid email format</small>
+        }
+      </div>
       }
     </div>
 
     <!-- Password Field -->
     <div class="form-group">
       <label for="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        formControlName="password"
-        placeholder="••••••••"
-      />
+      <input id="password" type="password" formControlName="password" placeholder="••••••••" />
 
       @if (form.get('password')?.invalid && form.get('password')?.touched) {
-        <div class="error">
-          <small>Password is required</small>
-        </div>
+      <div class="error">
+        <small>Password is required</small>
+      </div>
       }
     </div>
 
@@ -45,10 +34,11 @@
     <button type="submit" [disabled]="form.invalid || loading">
       {{ loading ? 'Logging in...' : 'Login' }}
     </button>
-  </form>
+    <!-- <button type="button" (click)="loginWithGoogle()">Login with Google</button> -->
 
-  <p>
-    Don't have an account? 
-    <button><a routerLink="/register">Register</a></button>
-  </p>
+    <p>
+      Don't have an account?
+      <a routerLink="/register">Register</a>
+    </p>
+  </form>
 </div>

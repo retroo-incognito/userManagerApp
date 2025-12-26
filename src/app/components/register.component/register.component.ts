@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {  ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
@@ -31,7 +31,11 @@ export class RegisterComponent {
 
     this.auth.register(email!, password!).subscribe({
       next: () => this.router.navigate(['/login']),
-      error: err => alert(err.error.message)
+      error: err => {
+        // Safely extract error message
+        const message = err?.error?.message || err?.message || 'Something went wrong';
+        alert(message);
+      }
     });
   }
 }
